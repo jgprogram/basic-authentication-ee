@@ -39,7 +39,7 @@ public class BasicAuthenticationFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        boolean isAuth = authService.basicAuthenticate(httpRequest, new CredentialsAuthenticator() {
+        boolean isAuth = authService.BasicAuthenticate(httpRequest, new CredentialsAuthenticator() {
             @Override
             public boolean authenticate(String username, String password) {
                 return !myFacade.findByLoginPassword(username, password).isEmpty();
