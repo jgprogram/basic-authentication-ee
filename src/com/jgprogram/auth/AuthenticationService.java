@@ -19,7 +19,7 @@ public class AuthenticationService {
      * @param credentialsAuthenticator
      * @return Return true if credentials in request are authenticated.
      */
-    public boolean BasicAuthenticate(HttpServletRequest httpRequest, CredentialsAuthenticator credentialsAuthenticator) {
+    public boolean basicAuthenticate(HttpServletRequest httpRequest, CredentialsAuthenticator credentialsAuthenticator) {
         String authHeader = httpRequest.getHeader("Authorization");
 
         return basicAuthenticate(authHeader, credentialsAuthenticator);
@@ -37,7 +37,7 @@ public class AuthenticationService {
      * @param credentialsAuthenticator
      * @return Return true if credentials are authenticated.
      */
-    public boolean BasicAuthenticate(String authCredentials, CredentialsAuthenticator credentialsAuthenticator) {
+    public boolean basicAuthenticate(String authCredentials, CredentialsAuthenticator credentialsAuthenticator) {
         boolean isAuth = false;
 
         if (authCredentials != null && authCredentials.contains("Basic ")) {
@@ -77,7 +77,7 @@ public class AuthenticationService {
      *
      * @throws IOException If cannot send status code to response
      */
-    public void AppendUnauthorizedToResponse(HttpServletResponse response, String realm) throws IOException {
+    public void appendUnauthorizedToResponse(HttpServletResponse response, String realm) throws IOException {
         response.setHeader("WWW-Authenticate", "Basic realm=\"" + realm + "\"");
         response.sendError(401, "Unauthorized");
     }
