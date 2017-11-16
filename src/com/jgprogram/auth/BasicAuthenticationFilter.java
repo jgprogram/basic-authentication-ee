@@ -39,7 +39,7 @@ public class BasicAuthenticationFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        boolean isAuth = authService.BasicAuthenticate(httpRequest, new CredentialsAuthenticator() {
+        boolean isAuth = authService.basicAuthenticate(httpRequest, new CredentialsAuthenticator() {
             @Override
             public boolean authenticate(String username, String password) {
                 return !myFacade.findByLoginPassword(username, password).isEmpty();
@@ -49,7 +49,7 @@ public class BasicAuthenticationFilter implements Filter {
         if (isAuth) {
             chain.doFilter(request, response);
         } else {
-            authService.AppendUnauthorizedToResponse(httpResponse, "my-servlet");
+            authService.appendUnauthorizedToResponse(httpResponse, "my-servlet");
         }
     }
 
